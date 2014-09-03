@@ -5,7 +5,6 @@
 # ---------------------------------------------
 # STUDENT INFORMATION
 #
-# List your information below, in format
 # Connor Peet, 1001088208
 #
 # ---------------------------------------------
