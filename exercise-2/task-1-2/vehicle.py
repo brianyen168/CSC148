@@ -47,22 +47,6 @@ class Car:
         """
         return abs(new_x - self.pos_x) + abs(new_y - self.pos_y)
 
-    def _move_to_grid(self, new_x, new_y):
-        """
-        Moves the car as close to the new_x and new_y as it
-        can travel with its amount of fuel.
-        """
-
-        while self._max_movement() > 0 and self._delta_to(new_x, new_y) > 0:
-            if self.pos_x != new_x:
-                self.pos_x += 1 if new_x > self.pos_x else -1
-            elif self.pos_y != new_y:
-                self.pos_y += 1 if new_y > self.pos_y else -1
-
-            self.fuel -= self.efficiency
-
-        return self.pos_x, self.pos_y
-
     def move(self, new_x, new_y):
         """ (Car, int, int) -> NoneType
 
@@ -77,10 +61,13 @@ class Car:
         Remember that the car can only travel horizontally and vertically!
         """
 
-        if self._delta_to(new_x, new_y) > self._max_movement():
+        delta = self._delta_to(new_x, new_y)
+        if delta > self._max_movement():
             raise NotEnoughFuelError('Not enough fuel to reach destination!')
 
-        self._move_to_grid(new_x, new_y)
+        self.pos_x = new_x
+        self.pos_y = new_y
+        self.fuel -= self.efficiency * delta
 
 
 class HoverCar(Car):
@@ -97,9 +84,6 @@ class HoverCar(Car):
         Car.__init__(self, fuel, efficiency)
         self.hover_fuel = hover_fuel
 
-    def _delta_to(self, new_x, new_y):
-        return math.sqrt((self.pos_x - new_x) ** 2 + (self.pos_y - new_y) ** 2)
-
     def move(self, new_x, new_y):
         """ (HoverCar, int, int)
 
@@ -113,11 +97,12 @@ class HoverCar(Car):
         try:
             return super(HoverCar, self).move(new_x, new_y)
         except NotEnoughFuelError as e:
-            self._move_to_grid(new_x, new_y)
+            pass
 
-        fuel_delta = self._delta_to(new_x, new_y) * self.hover_efficiency
+        fuel_delta = math.sqrt((self.pos_x - new_x) ** 2 +(self.pos_y - new_y) ** 2) * self.hover_efficiency
+        
         if self.hover_fuel < fuel_delta:
-            raise NotEnoughFuelError('Not enough hover fuel to reach destination!')
+            raise NotEnoughFuelError('Not enough normal or hover fuel to reach destination!')
 
         self.pos_x = new_x
         self.pos_y = new_y

@@ -33,6 +33,14 @@ class TestHoverCar(unittest.TestCase):
         self.assertEqual(hover_car.pos_x, 10)
         self.assertEqual(hover_car.pos_y, 10)
 
+    def test_moves_using_normal(self):
+        hover_car = HoverCar(5, 1, 1)
+        hover_car.move(3, 0)
+        self.assertEqual(hover_car.fuel, 2)
+        self.assertEqual(hover_car.hover_fuel, 1)
+        self.assertEqual(hover_car.pos_x, 3)
+        self.assertEqual(hover_car.pos_y, 0)
+
 
 if __name__ == '__main__':
     unittest.main(exit=False)
