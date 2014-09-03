@@ -100,7 +100,7 @@ class HoverCar(Car):
             pass
 
         fuel_delta = math.sqrt((self.pos_x - new_x) ** 2 +(self.pos_y - new_y) ** 2) * self.hover_efficiency
-        
+
         if self.hover_fuel < fuel_delta:
             raise NotEnoughFuelError('Not enough normal or hover fuel to reach destination!')
 

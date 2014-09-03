@@ -19,7 +19,7 @@ def remove_nth(stack, n):
     Removes the nth item from the stack, and returns it.
     """
     saves = []
-    for index in range(0, n - 1):
+    for index in range(n - 1):
         saves.append(stack.pop())
 
     output = stack.pop()
