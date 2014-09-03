@@ -26,10 +26,14 @@ class DatabaseTestCase(unittest.TestCase):
 
     def test_adds_and_finds_id(self):
         item = {'bar': True}
+
+        self.db.start_transaction()
         id = self.db.foos.add({'bar': True})
-
         self.assertEqual(item, self.db.foos.find_one(id))
+        self.db.end_transaction()
 
+        self.assertEqual(False, self.db.foos.find_one(id))
+        
     def test_finds_against_dict(self):
         item = {'bar': True}
         self.db.foos.add({'asdfdsf': 'asdfdsfs'})
