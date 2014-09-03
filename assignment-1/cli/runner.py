@@ -34,7 +34,6 @@ class Runner():
 
         return None
 
-
     def command(self, prefix):
         """
         Simple method to be used as a decorator, which returns a function

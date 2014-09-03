@@ -15,10 +15,10 @@ the actual test cases.
 import unittest
 import sys
 from io import StringIO
-from sms import run
+from sms import runner
 
 
-class TestSMS(unittest.TestCase):
+class SmsTestCase(unittest.TestCase):
 
     # Methods for redirecting input and output
     # Do not change these!
@@ -44,12 +44,14 @@ class TestSMS(unittest.TestCase):
         in its name.
         """
         sys.stdin = StringIO('\n'.join(commands))
-        run()
+        runner.run()
         self.assertEqual(self.out.getvalue(), '\n'.join(outputs))
 
     def test_simple(self):
-        self.assert_io(['exit'], [''])
+        with self.assertRaises(SystemExit) as c:
+            self.assert_io(['exit'], [''])
 
     def test_duplicate_student(self):
-        self.assert_io(['create student david', 'create student david', 'exit'],
-                       ['ERROR: Student david already exists.', ''])
+        with self.assertRaises(SystemExit) as c:
+            self.assert_io(['create student david', 'create student david', 'exit'],
+                           ['ERROR: Student david already exists.', ''])
