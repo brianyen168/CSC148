@@ -95,7 +95,7 @@ class HoverCar(Car):
         """
 
         try:
-            return super(HoverCar, self).move(new_x, new_y)
+            return Car.move(self, new_x, new_y)
         except NotEnoughFuelError as e:
             pass
 
