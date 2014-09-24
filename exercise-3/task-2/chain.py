@@ -5,8 +5,7 @@
 # ---------------------------------------------
 # STUDENT INFORMATION
 #
-# List your information below, in format
-# <full name>, <utorid>
+# Connor Peet, 1001088208
 #
 # ---------------------------------------------
 """Exercise 3, Task 2: PeopleChain.
@@ -60,7 +59,7 @@ class PeopleChain:
         Return the name of the leader of the chain.
         Raise ShortChainError if chain has no leader.
         """
-        return self.get_nth(0).name
+        return self.get_nth(0)
 
     def get_second(self):
         """ (Person) -> str
@@ -69,7 +68,7 @@ class PeopleChain:
         i.e., the one the leader is holding onto.
         Raise ShortChainError if chain has no second person.
         """
-        return self.get_nth(1).name
+        return self.get_nth(1)
 
     def get_third(self):
         """ (Person) -> str
@@ -77,7 +76,7 @@ class PeopleChain:
         Return the name of the third person in the chain.
         Raise ShortChainError if chain has no third person.
         """
-        return self.get_nth(2).name
+        return self.get_nth(2)
 
     def get_nth(self, n):
         """ (Person) -> str
@@ -92,17 +91,11 @@ class PeopleChain:
         if self.leader is None:
             raise ShortChainError('This chain has no people!')
 
-        people = [self.leader]
-        current_person = self.leader
+        person = self.leader
 
-        while True:
-            if current_person.next is None:
-                break
+        for i in range(n):
+            person = person.next
+            if person is None:
+                raise ShortChainError()
 
-            current_person = current_person.next
-            people.append(current_person)
-
-        if n >= len(people):
-            raise ShortChainError('Tried to get the %sth person, but we only have %s people!' % (n, len(people)))
-
-        return people[n]
+        return person.name

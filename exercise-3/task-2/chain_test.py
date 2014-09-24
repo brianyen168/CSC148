@@ -30,5 +30,12 @@ class TestPeopleChain(unittest.TestCase):
     def test_get_third_simple(self):
         self.assertEqual(self.chain.get_third(), 'Kevan')
 
+    def test_get_nth_simple(self):
+        self.assertEqual(self.chain.get_nth(1), 'Janna')
+
+    def test_raises_small_stack_error(self):
+        with self.assertRaises(ShortChainError):
+            self.chain.get_nth(200)
+
 if __name__ == '__main__':
     unittest.main(exit=False)

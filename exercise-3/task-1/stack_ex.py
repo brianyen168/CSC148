@@ -5,12 +5,11 @@
 # ---------------------------------------------
 # STUDENT INFORMATION
 #
-# List your information below, in format
-# <full name>, <utorid>
+# Connor Peet, 1001088208
 #
 # ---------------------------------------------
 from stack import Stack
-# from stack import EmptyStackError
+from stack import EmptyStackError
 
 
 class SmallStackError(Exception):
@@ -34,7 +33,7 @@ def reverse_n(stack, n=None):
             items.append(stack.pop())
             count -= 1
 
-    except IndexError as e:
+    except EmptyStackError:
         if n is not None:
             raise SmallStackError()
 

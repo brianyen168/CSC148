@@ -63,7 +63,6 @@ class TestStack(unittest.TestCase):
         reverse(stack)
         for i in range(100):
             self.assertEqual(stack.pop(), i)
-
         self.assertTrue(stack.is_empty())
 
     def test_reverse_empty(self):
