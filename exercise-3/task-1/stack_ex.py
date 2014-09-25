@@ -5,41 +5,38 @@
 # ---------------------------------------------
 # STUDENT INFORMATION
 #
-# List your information below, in format
-# <full name>, <utorid>
+# Connor Peet, 1001088208
 #
 # ---------------------------------------------
 from stack import Stack
-# from stack import EmptyStackError
+from stack import EmptyStackError
 
 
 class SmallStackError(Exception):
     pass
 
-
-def reverse_n(stack, n=None):
+def reverse_n(stack, count=None):
     """
-    Reverses `n` items in the stack. If n is not given or None, the entire
-    stack will be reversed.
+    Reverses `count` items in the stack. If count is not given or None,
+    the entire stack will be reversed.
     """
-    if n is None:
-        count = float('inf')
-    else:
-        count = n
 
     items = []
 
     try:
-        while count > 0:
-            items.append(stack.pop())
-            count -= 1
+        if count is None:
+            while True: items.append(stack.pop())
+        else:
+            while count > 0:
+                items.append(stack.pop())
+                count -= 1
 
-    except IndexError as e:
-        if n is not None:
+    except EmptyStackError:
+        if count is not None:
             raise SmallStackError()
-
-    for item in items:
-        stack.push(item)
+    finally:
+        for item in items:
+            stack.push(item)
 
 
 def reverse_top_two(stack):
