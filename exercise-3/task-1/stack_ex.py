@@ -24,14 +24,6 @@ def reverse_n(stack, count=None):
     items = []
 
     try:
-<<<<<<< HEAD
-        while count > 0:
-            items.append(stack.pop())
-            count -= 1
-
-    except EmptyStackError:
-        if n is not None:
-=======
         if count is None:
             while True: items.append(stack.pop())
         else:
@@ -41,7 +33,6 @@ def reverse_n(stack, count=None):
 
     except EmptyStackError:
         if count is not None:
->>>>>>> e35c85e08562eeab2b75fc653f5ebe06f560a383
             raise SmallStackError()
     finally:
         for item in items:
