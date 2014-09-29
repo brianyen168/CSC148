@@ -59,7 +59,11 @@ class PeopleChain:
         Return the name of the leader of the chain.
         Raise ShortChainError if chain has no leader.
         """
+<<<<<<< HEAD
         return self.get_nth(0)
+=======
+        return self.get_nth(1)
+>>>>>>> e35c85e08562eeab2b75fc653f5ebe06f560a383
 
     def get_second(self):
         """ (Person) -> str
@@ -68,7 +72,11 @@ class PeopleChain:
         i.e., the one the leader is holding onto.
         Raise ShortChainError if chain has no second person.
         """
+<<<<<<< HEAD
         return self.get_nth(1)
+=======
+        return self.get_nth(2)
+>>>>>>> e35c85e08562eeab2b75fc653f5ebe06f560a383
 
     def get_third(self):
         """ (Person) -> str
@@ -76,7 +84,11 @@ class PeopleChain:
         Return the name of the third person in the chain.
         Raise ShortChainError if chain has no third person.
         """
+<<<<<<< HEAD
         return self.get_nth(2)
+=======
+        return self.get_nth(3)
+>>>>>>> e35c85e08562eeab2b75fc653f5ebe06f560a383
 
     def get_nth(self, n):
         """ (Person) -> str
@@ -93,7 +105,11 @@ class PeopleChain:
 
         person = self.leader
 
+<<<<<<< HEAD
         for i in range(n):
+=======
+        for i in range(n - 1):
+>>>>>>> e35c85e08562eeab2b75fc653f5ebe06f560a383
             person = person.next
             if person is None:
                 raise ShortChainError()

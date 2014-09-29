@@ -24,11 +24,30 @@ class TestPeopleChain(unittest.TestCase):
     def test_get_leader_simple(self):
         self.assertEqual(self.chain.get_leader(), 'Iron Man')
 
+    def test_get_leader_fails(self):
+        with self.assertRaises(ShortChainError):
+            self.empty_chain.get_leader()
+
     def test_get_second_simple(self):
         self.assertEqual(self.chain.get_second(), 'Janna')
 
+    def test_get_second_fails(self):
+        with self.assertRaises(ShortChainError):
+            self.one_chain.get_second()
+
     def test_get_third_simple(self):
         self.assertEqual(self.chain.get_third(), 'Kevan')
+        
+    def test_get_third_fails(self):
+        with self.assertRaises(ShortChainError):
+            self.two_chain.get_third()
+
+    def test_get_nth_simple(self):
+        self.assertEqual(self.chain.get_nth(3), 'Kevan')
+
+    def test_get_nth_fails(self):
+        with self.assertRaises(ShortChainError):
+            self.two_chain.get_nth(30)
 
     def test_get_nth_simple(self):
         self.assertEqual(self.chain.get_nth(1), 'Janna')

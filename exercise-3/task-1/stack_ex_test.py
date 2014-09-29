@@ -46,6 +46,7 @@ class TestStack(unittest.TestCase):
         stack.push(1)
         with self.assertRaises(SmallStackError):
             reverse_top_two(stack)
+        self.assertEqual(stack.pop(), 1)
 
     def test_simple_reverse(self):
         stack = Stack()
