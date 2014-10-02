@@ -223,7 +223,7 @@ class LinkedList:
         False
         """
         if not isinstance(other, LinkedList):
-            return True
+            return False
 
         length = len(self)
         if length != len(other):
