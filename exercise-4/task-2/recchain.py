@@ -6,7 +6,7 @@
 # STUDENT INFORMATION
 #
 # List your information below, in format
-# <full name>, <utorid>
+# Connor Peet, 1001088208
 #
 # ---------------------------------------------
 """Recursive PeopleChain implementation.
