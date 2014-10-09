@@ -11,7 +11,6 @@
 # ---------------------------------------------
 from linkedlistrec import LinkedListRec
 
-
 def map_f(linked_list, f):
     """ (LinkedListRec, function) -> LinkedListRec
 
@@ -23,4 +22,10 @@ def map_f(linked_list, f):
     any LinkedListRec methods other than the constructor
     and is_empty.
     """
-    pass
+    if linked_list.is_empty():
+        return LinkedListRec([])
+
+    new_list = LinkedListRec([f(linked_list.first)])
+    new_list.rest = map_f(linked_list.rest, f)
+
+    return new_list
