@@ -59,11 +59,13 @@ class ListBinaryTree:
         """
         output = [self.items[index]]
 
-        if self.is_leaf(index):
-            return output
-
         left = self.left(index)
         right = self.right(index)
+
+        if len(self.items) <= left:
+            return output
+        if len(self.items) <= right:
+            return output + self.go_down_greedy(left)
 
         if self.items[right] < self.items[left]:
             return output + self.go_down_greedy(right)
@@ -84,10 +86,3 @@ class ListBinaryTree:
         Return the index of the right child of the node as position index.
         """
         return 2 * index + 1
-
-    def is_leaf(self, index):
-        """
-        Returns whether the index represents a left node.
-        """
-
-        return len(self.items) <= 2 * index
